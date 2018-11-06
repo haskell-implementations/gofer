@@ -1,0 +1,66 @@
+This directory contains modified source code for DJ Delorie's 386 DOS
+extender go32.  The modifications allow a program (in this particular
+case, Gofer) to recover from an interrupt signal (i.e. a ^C) without
+terminating the program.
+
+Differences from the standard distribution of go32 are documented in
+the file diffs which you should find in this directory.
+
+Gofer is distributed under conditions of use stated in the user
+documentation and the file goferite.h in the Gofer source directory.
+
+Conditions of use, copying and distribution for go32 are documented
+in the files COPYING.DJ and COPYING and must be observed if you intend
+to use or distribute versions of Gofer for use with go32.  Please read
+these files if you are not already familiar with them.
+
+The modifications to go32 to handle interrupts were provided by
+Rami EL CHARIF and William SCHELTER, as described in the copyright
+message in the signal.c source file.
+
+If you use a different compiler/extender to run or distribute Gofer,
+the conditions of distribution and use for Gofer still apply, subject
+to terms and conditions indicated by the licence or conditions of use
+for the compiler/extender that is used.
+
+The version of the source code here is intended to be compiled using
+Borland C++ 3.1 with ndmake 4.5.  You will also need DJGPP 1.09
+(based on GNU C 2.2.2) to compile the Gofer source code.  The procedure
+that I used is as follows.  I make no guarantees that this will also
+work for you:
+
+    1) in the directory GO32S: run NDMAKE 4.5 with the supplied
+       Makefile, by typing: NDMAKE.  There will be lots of warning
+       messages; I think it is safe to ignore these.
+
+    2) Copy the program GO32T.EXE to a suitable directory on your
+       PATH.  The DOS extender has been renamed as GO32T.EXE rather
+       than GO32.EXE for the convenience of any users that are already
+       using a version of the latter (with or without signal support).
+
+    3) In the top level directory in which this archive was unpacked,
+       copy MAKEFILE, GO32/SIGNAL.H, GO32/SIGNAL.C, GO32/SIGMAN.S
+       into the Gofer source directory.
+
+    4) In the Gofer source directory, edit prelude.h to set the #define
+       for DJGPP to 1 and the rest to 0.  Compile the Gofer system using
+       NDMAKE and the MAKEFILE copied in the previous step.
+
+    5) Standalone versions of Gofer and Gofc can be created by running
+       the AOUT2EXE program in the GO32S directory on the output files
+       GOFER and GOFC.  Without this step, you will need to type
+           GO32T GOFER ... <args> ...
+       or
+           GO32T GOFC ... <args> ...
+       to start the interpreter or compiler respectively.  Even if you
+       do carry out this step, the GO32T.EXE file *MUST* remain on your
+       PATH.
+
+    6) The appropriate environment variables will need to be set to
+       enable go32 to run.  In addition, you will need to use the
+       floating point emulator for any machine which does not have
+       hardware support for floating point (i.e. a coprocessor).
+
+This software is distributed WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+

@@ -1,0 +1,32 @@
+The files:	gofer.exe   (or dogofer.exe, if you want support for the
+                             new do {...} notation)
+		go32t.exe
+	and	emu387
+
+Can be used to run Gofer 2.30a on a 386 machine, to get the best out of
+the additional performance that machines of that class can offer.  To
+install:
+
+    Move GOFER.EXE and GO32T.EXE to a directory on your path
+
+    Put EMU387 in a suitable directory (the usual place is
+    C:\DJGPP\EMU387\EMU387).
+
+    Make a temporary directory, C:\TMP
+
+    Get a copy of the prelude files, demonstration progs etc.
+    from the standard distribution and install them.
+
+Add the following lines to your autoexec.bat:
+
+    SET GOFER=/Gofer/Standard.prelude
+    SET GO32TMP=C:\tmp
+    SET GO32=emu c:\djgpp\emu387\emu387
+
+If your machine has a floating point coprocessor, I think you can get
+away with just doing:
+
+    SET GO32=
+
+(or, if you have ANSI.SYS installed, try SET GO32=ansi).
+
