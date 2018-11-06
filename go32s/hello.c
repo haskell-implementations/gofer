@@ -1,4 +1,0 @@
-main()
-{
-  system("mem /program");
-}
